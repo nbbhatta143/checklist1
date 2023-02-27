@@ -10,13 +10,13 @@ import ProfilePage from "./component/Profile";
 class App extends Component {
   render() {
     return (
-      <HashRouter basename="/">
+      <Router>
         <Navigation />
         <Routes>
-          <Route exact path="/checklist" component={Checklist} />
-          <Route path="/profilePage" component={ProfilePage} />
+          <Route exact path="/checklist" element={<Checklist />} />
+          <Route path="/profilePage" element={<ProfilePage />} />
         </Routes>
-      </HashRouter>
+      </Router>
     );
   }
 }
