@@ -141,3 +141,14 @@
   font-size: 1.2rem;
   line-height: 1.5;
 }
+.activated {
+  display: inline-block !important ;
+}
+.inActive {
+  display: none !important;
+}
+/* ul {
+  display: flex;
+  flex-direction: column;
+  
+} */

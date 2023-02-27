@@ -1,22 +1,33 @@
 import React, { Component } from "react";
 
+import CheckBoxSharpIcon from "@mui/icons-material/CheckBoxSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { green } from "@mui/material/colors";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { IconButton } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-
+import Checkbox from "@mui/material/Checkbox";
 class Checklist extends Component {
   state = {
     items: [],
     newItemText: "",
+    clicked: "",
+    check: "",
   };
 
   componentDidMount() {
     const storedItems = JSON.parse(localStorage.getItem("items"));
+    let clickValue = "";
     if (storedItems) {
       this.setState({ items: storedItems });
     }
+    if (storedItems.length >= 1) {
+      clickValue = "activated";
+    } else {
+      clickValue = "inActive";
+    }
+    this.setState(() => ({
+      clicked: clickValue,
+    }));
   }
 
   componentDidUpdate() {
@@ -41,12 +52,20 @@ class Checklist extends Component {
     this.setState((prevState) => ({
       items: [...prevState.items, newItem],
       newItemText: "",
+      clicked: "activated",
     }));
   };
 
   handleDeleteItem = (itemId) => {
     this.setState((prevState) => ({
       items: prevState.items.filter((item) => item.id !== itemId),
+    }));
+  };
+
+  handleDeleteAllChange = () => {
+    this.setState((prevState) => ({
+      items: [],
+      clicked: "inActive",
     }));
   };
 
@@ -65,6 +84,16 @@ class Checklist extends Component {
     }));
   };
 
+  handleToggleAll = () => {
+    this.setState((prevState) => ({
+      items: prevState.items.map((item) => {
+        return {
+          ...item,
+          done: !item.done,
+        };
+      }),
+    }));
+  };
   render() {
     return (
       <div className="checklist" style={{ marginTop: "3%" }}>
@@ -79,24 +108,49 @@ class Checklist extends Component {
               required
             />
           </label>
-          {/* <button type="submit"></button> */}
           <IconButton type="submit" color="primary" aria-label="add to shopping cart">
             <AddShoppingCartIcon />
           </IconButton>
+          <DeleteIcon
+            className="delete"
+            color="secondary"
+            item
+            xs={10}
+            onClick={() => this.handleDeleteAllChange()}
+          >
+            Delete
+          </DeleteIcon>{" "}
+          <Checkbox
+            value="checkedA"
+            type="checkbox"
+            color="primary"
+            className={this.state.clicked}
+            inputProps={{
+              "aria-label": "Checkbox A",
+            }}
+            size="small"
+            defaultValue={""}
+            onChange={() => this.handleToggleAll()}
+          ></Checkbox>
         </form>
+
         <ul>
           {this.state.items.map((item) => (
             <li key={item.id}>
               <label className={item.done ? "done" : ""}>
                 <input
+                  className="checkbox"
                   type="checkbox"
                   checked={item.done}
                   onChange={() => this.handleToggleDone(item.id)}
-                />
-                &nbsp;&nbsp;{item.text}
+                />{" "}
+                {item.text}
               </label>
+
               <DeleteIcon
                 className="delete"
+                color="success"
+                id="deleteItems"
                 item
                 xs={10}
                 onClick={() => this.handleDeleteItem(item.id)}

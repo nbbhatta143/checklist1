@@ -54,22 +54,25 @@
   background-color: #dc3545;
 }
 
-.checklist .delete-btn:hover {
-  background-color: #c82333;
+.checklist .delete:hover {
+  cursor: pointer;
+}
+.checklist .checkbox:hover {
+  cursor: pointer;
 }
 
 .checklist ul {
-  list-style-type: none;
   margin: 0;
   padding: 0;
+  justify-content: space-around;
 }
 
 .checklist li {
   display: flex;
+  gap: 1rem;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 4px;
+  margin-bottom: 5px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -79,5 +82,10 @@
   text-decoration: line-through;
   opacity: 0.5;
 }
-
+.checklist #deleteItems {
+  margin-inline-start: auto;
+}
+#deleteItems {
+  color: #dc3545;
+}
 /* profile css */
