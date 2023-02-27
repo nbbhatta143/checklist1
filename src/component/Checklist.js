@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-// import "./Checklist.css";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import { green } from "@mui/material/colors";
+import "@fortawesome/fontawesome-free/css/all.css";
+import { IconButton } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 class Checklist extends Component {
   state = {
@@ -62,11 +67,11 @@ class Checklist extends Component {
 
   render() {
     return (
-      <div className="checklist">
-        <h1>Checklist</h1>
+      <div className="checklist" style={{ marginTop: "3%" }}>
+        <h1>Create your checklist</h1>
         <form onSubmit={this.handleAddItem}>
           <label>
-            Add item:
+            &nbsp;&nbsp;Add your lists :&nbsp;&nbsp;
             <input
               type="text"
               value={this.state.newItemText}
@@ -74,7 +79,10 @@ class Checklist extends Component {
               required
             />
           </label>
-          <button type="submit">Add</button>
+          {/* <button type="submit"></button> */}
+          <IconButton type="submit" color="primary" aria-label="add to shopping cart">
+            <AddShoppingCartIcon />
+          </IconButton>
         </form>
         <ul>
           {this.state.items.map((item) => (
@@ -85,11 +93,16 @@ class Checklist extends Component {
                   checked={item.done}
                   onChange={() => this.handleToggleDone(item.id)}
                 />
-                {item.text}
+                &nbsp;&nbsp;{item.text}
               </label>
-              <button className="delete" onClick={() => this.handleDeleteItem(item.id)}>
+              <DeleteIcon
+                className="delete"
+                item
+                xs={10}
+                onClick={() => this.handleDeleteItem(item.id)}
+              >
                 Delete
-              </button>
+              </DeleteIcon>
             </li>
           ))}
         </ul>
