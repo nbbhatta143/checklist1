@@ -13,8 +13,8 @@ class App extends Component {
       <Router>
         <Navigation />
         <Routes>
-          <Route exact path="/" element={<Checklist />} />
-          <Route path="/profilePage" element={<ProfilePage />} />
+          <Route exact path="/home/" element={<Checklist />} />
+          <Route path="/profilePage/" element={<ProfilePage />} />
         </Routes>
       </Router>
     );
