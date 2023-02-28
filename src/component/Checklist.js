@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import CheckBoxSharpIcon from "@mui/icons-material/CheckBoxSharp";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { IconButton } from "@mui/material";

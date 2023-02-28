@@ -14,7 +14,7 @@ class App extends Component {
         <Navigation />
         <Routes>
           <Route exact path="/checklist" element={<Checklist />} />
-          <Route path="/checklist/profilePage" element={<ProfilePage />} />
+          <Route path="/checklist/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
     );
